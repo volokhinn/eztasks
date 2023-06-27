@@ -5,6 +5,7 @@ import trash from '../icons/trash.svg';
 import clock from '../icons/clock.svg';
 import done from '../icons/done.svg';
 
+
 export const Card = ({text, status}) => {
   return (
     <div className={styles.cards__item}>
