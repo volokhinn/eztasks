@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../scss/app.module.scss';
 
-export const ButtonAdd = () => {
+export const ButtonAdd = ({onClick}) => {
   return (
-    <button className={styles.button__add}>+</button>
+    <button onClick={onClick} className={styles.button__add}>+</button>
   )
 }
 

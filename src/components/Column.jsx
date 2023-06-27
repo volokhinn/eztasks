@@ -2,33 +2,26 @@ import React from 'react';
 import styles from '../scss/app.module.scss';
 import Card from './Card';
 import ButtonAdd from './ButtonAdd';
+import { useSelector, useDispatch } from 'react-redux';
+import { findCardByStatus, addCard } from '../redux/slices/cardSlice';
 
-const cards = [{
-    id: 1,
-    status: 'perform',
-    text: '123123123123123123123',
-},
-{
-    id: 2,
-    status: 'execution',
-    text: 'sdfsdfsdfsdfsdfsdfsdfsdf',
-},
-{
-    id: 3,
-    status: 'done',
-    text: 'asdasdasdasdasdasd',
-}
-]
-
-const cardsElements = cards.map((obj) => <Card {...obj} />);
 
 export const Column = ({status, columnTitle, isAddButton}) => {
+
+    const dispatch = useDispatch();
+const onClickAdd = () => {
+    const newCard = {id: new Date().getTime(), status: 'perform', text: 'Нажмите, чтобы ввести текст'};
+    dispatch(addCard(newCard));
+}
+
+  const cards = useSelector(findCardByStatus(status));
+  const cardsElements = cards.map((obj) => <Card key={obj.id} {...obj} />);
   return (
     <div className={styles.cards__column}>
         <h2 className={styles.cards__title}>{columnTitle}</h2>
         {cardsElements}
         {isAddButton && (
-            <ButtonAdd />
+            <ButtonAdd onClick={onClickAdd} />
         )}
     </div>
   )
