@@ -3,6 +3,6 @@ import cardSlice from './slices/cardSlice';
 
 export const store = configureStore({
   reducer: {
-    cardSlice,
+    tasks: cardSlice,
   },
-})
+});
